@@ -62,15 +62,6 @@ No build tools or dependencies required. Everything runs from a single `index.ht
 
 ---
 
-## Enabling GitHub Pages
-
-1. Go to the repo on GitHub → **Settings** → **Pages**
-2. Under **Branch**, select `main` and folder `/ (root)`
-3. Click **Save**
-4. Visit: `https://karish-ma.github.io/linkedin-proofreading-microlearning/`
-
----
-
 ## Portfolio Context
 
 This module is a portfolio piece built on a curriculum I developed for the DIGITAL STARs programme. It demonstrates end-to-end instructional design practice: curriculum writing, learning design, and interactive eLearning development.
