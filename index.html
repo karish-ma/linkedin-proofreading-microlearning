@@ -1,0 +1,2732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinkedIn Proofreading with ChatGPT | Micro-Learning</title>
+
+  <!-- Reveal.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" />
+
+  <!-- Font Awesome 6 Free -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =======================================
+       CSS VARIABLES & GLOBAL OVERRIDES
+       ======================================= */
+    :root {
+      --li-blue:       #0A66C2;
+      --li-blue-dark:  #004182;
+      --li-blue-light: #e8f0fe;
+      --success:       #057642;
+      --success-bg:    #e8f5e9;
+      --error:         #c62828;
+      --error-bg:      #ffebee;
+      --warning:       #e65100;
+      --warning-bg:    #fff3e0;
+      --neutral:       #f3f6f9;
+      --text:          #1c1c1c;
+      --muted:         #666;
+      --radius:        12px;
+    }
+
+    * { box-sizing: border-box; }
+
+    .reveal {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+    }
+
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      font-family: 'Poppins', sans-serif;
+      color: var(--li-blue-dark);
+      text-transform: none;
+      letter-spacing: -0.02em;
+    }
+
+    .reveal h2 { font-size: 1.5em; margin-bottom: 0.4em; }
+
+    .reveal p, .reveal li { line-height: 1.7; }
+
+    .reveal .progress span { background: var(--li-blue); }
+    .reveal .progress { height: 5px; }
+
+    .reveal .slide-number {
+      background: rgba(10,102,194,0.12);
+      color: var(--li-blue);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      border-radius: 8px;
+      padding: 4px 10px;
+      bottom: 14px;
+      right: 14px;
+    }
+
+    /* Slide base — content anchors to top of slide (center:false) */
+    .reveal .slides section {
+      padding: 28px 40px 80px;
+      text-align: center !important;
+    }
+
+    /* Muted subtitle */
+    .subtitle-text {
+      color: var(--muted);
+      font-size: 0.85em;
+      margin: 0 auto 1.2em !important;
+      text-align: center !important;
+      max-width: 600px;
+      display: block;
+    }
+
+    /* Hint text */
+    .hint {
+      font-size: 0.75em;
+      color: #aaa;
+      margin-top: 0.8em;
+      text-align: center !important;
+      display: block;
+    }
+
+    /* =======================================
+       SLIDE 1 — TITLE
+       ======================================= */
+    .slide-title {
+      background: linear-gradient(140deg, #0A66C2 0%, #004182 100%) !important;
+    }
+
+    .slide-title h1 {
+      color: #fff;
+      font-size: 2em;
+      line-height: 1.2;
+      margin: 0.3em 0 0.2em;
+    }
+
+    .title-icon {
+      font-size: 3.2em;
+      color: #fff;
+    }
+
+    .title-sub {
+      color: rgba(255,255,255,0.82);
+      font-size: 1em;
+      margin-bottom: 1.4em;
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2em;
+    }
+
+    .tag {
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.78em;
+      font-weight: 500;
+    }
+
+    .btn-start {
+      background: #fff;
+      color: var(--li-blue);
+      border: none;
+      padding: 13px 34px;
+      border-radius: 30px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.22);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .title-objectives {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 12px;
+      padding: 12px 20px;
+      margin: 0.6em auto 0.8em;
+      max-width: 540px;
+      text-align: left;
+    }
+    .title-objectives p {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.7em;
+      font-weight: 700;
+      margin: 0 0 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+    .title-objectives ol {
+      margin: 0;
+      padding-left: 1.4em;
+    }
+    .title-objectives li {
+      color: rgba(255,255,255,0.88);
+      font-size: 0.77em;
+      margin-bottom: 4px;
+      line-height: 1.45;
+    }
+    .title-objectives li strong {
+      color: #fff;
+    }
+
+    .btn-start:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    /* =======================================
+       SLIDE 2 — PRIOR KNOWLEDGE CHECK
+       ======================================= */
+    .pk-wrap {
+      max-width: 600px;
+      width: 100%;
+      text-align: center !important;
+      margin: 0 auto !important;
+    }
+
+    .pk-intro-tag {
+      background: var(--li-blue-light);
+      color: var(--li-blue);
+      padding: 5px 16px;
+      border-radius: 20px;
+      font-size: 0.78em;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 1em;
+    }
+
+    .pk-question {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.05em;
+      color: var(--li-blue-dark);
+      margin-bottom: 1.2em;
+    }
+
+    .pk-btn-row {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      margin-bottom: 1.2em;
+      flex-wrap: wrap;
+    }
+
+    .pk-btn {
+      padding: 10px 26px;
+      border-radius: 22px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.88em;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pk-btn.yes {
+      background: var(--li-blue);
+      color: #fff;
+      border: 2px solid var(--li-blue);
+    }
+
+    .pk-btn.no {
+      background: #fff;
+      color: var(--li-blue);
+      border: 2px solid var(--li-blue);
+    }
+
+    .pk-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 14px rgba(10,102,194,0.22);
+    }
+
+    .pk-msg {
+      display: none;
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-size: 0.84em;
+      font-weight: 600;
+      margin-bottom: 1em;
+    }
+
+    .pk-msg.yes-msg { background: var(--success-bg); color: var(--success); }
+    .pk-msg.no-msg  { background: var(--warning-bg); color: var(--warning); }
+
+    .pk-info {
+      background: var(--li-blue-light);
+      border: 2px solid #a8c7f0;
+      border-radius: 14px;
+      padding: 14px 18px;
+      text-align: left;
+      display: none;
+      margin-bottom: 0.8em;
+    }
+
+    .pk-info h3 {
+      color: var(--li-blue-dark);
+      margin: 0 0 10px;
+      font-size: 0.95em;
+    }
+
+    .pk-info ul {
+      margin: 8px 0 10px;
+      padding-left: 1.3em;
+    }
+
+    .pk-info li {
+      font-size: 0.82em;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+
+    .pk-info p {
+      font-size: 0.82em;
+      color: var(--text);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .pk-continue {
+      background: var(--li-blue);
+      color: #fff;
+      border: none;
+      padding: 11px 30px;
+      border-radius: 22px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.92em;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      margin-top: 0.5em;
+    }
+
+    .pk-continue.show { display: inline-flex; }
+    .pk-continue:hover { background: var(--li-blue-dark); transform: translateY(-2px); }
+
+    /* =======================================
+       SLIDE 3 — WHY THIS MATTERS (FLIP CARDS)
+       ======================================= */
+    .why-flip-grid {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: stretch;   /* all cards same height */
+      flex-wrap: wrap;
+      margin: 0.6em auto 0;
+    }
+
+    .why-flip-card {
+      width: 210px;
+      height: 290px;   /* tall enough for longest back text at all three cards */
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .why-flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.55s cubic-bezier(.4,0,.2,1);
+      transform-style: preserve-3d;
+    }
+
+    .why-flip-card.flipped .why-flip-inner { transform: rotateY(180deg); }
+
+    .why-flip-front, .why-flip-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .why-flip-front {
+      background: var(--li-blue);
+      border: 2px solid var(--li-blue-dark);
+      color: #fff;
+    }
+
+    .why-flip-front .wff-icon { font-size: 2em; margin-bottom: 10px; }
+    .why-flip-front .wff-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.88em;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .why-flip-front .wff-hook {
+      font-size: 0.74em;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.4;
+    }
+
+    .why-flip-back {
+      background: #fff;
+      border: 2px solid #a8c7f0;
+      transform: rotateY(180deg);
+      justify-content: flex-start;
+      padding: 16px 14px;
+    }
+
+    .why-flip-back .wfb-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8em;
+      font-weight: 700;
+      color: var(--li-blue-dark);
+      margin-bottom: 8px;
+      align-self: flex-start;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .why-flip-back p {
+      font-size: 0.73em;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+      text-align: left;
+    }
+
+    /* =======================================
+       SLIDE 4 — DISCLAIMER
+       ======================================= */
+    .disclaimer-card {
+      background: var(--li-blue-light);
+      border: 2px solid #a8c7f0;
+      border-radius: 16px;
+      padding: 28px 32px;
+      max-width: 580px;
+      width: 100%;
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .disclaimer-card:hover {
+      box-shadow: 0 6px 20px rgba(10,102,194,0.14);
+    }
+
+    .disclaimer-card .warn-icon {
+      font-size: 2.2em;
+      color: var(--li-blue);
+      margin-bottom: 0.4em;
+    }
+
+    .disclaimer-card h3 {
+      color: var(--li-blue-dark);
+      margin: 0 0 10px;
+      font-size: 1.05em;
+    }
+
+    .disclaimer-card p {
+      color: var(--text);
+      font-size: 0.86em;
+      line-height: 1.7;
+      margin: 0;
+      text-align: left;
+    }
+
+    .disclaimer-extra {
+      display: none;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(10,102,194,0.2);
+      text-align: left;
+    }
+
+    /* =======================================
+       SLIDE 5 — SPOT THE ERRORS
+       ======================================= */
+    .error-context-banner {
+      background: var(--error-bg);
+      border: 1.5px solid #ef9a9a;
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-size: 0.8em;
+      color: #7f1d1d;
+      max-width: 580px;
+      width: 100%;
+      margin: 0 auto 0.9em;
+      text-align: left;
+    }
+
+    .error-context-banner strong { color: var(--error); }
+
+    .error-counter {
+      background: var(--li-blue);
+      color: #fff;
+      padding: 7px 20px;
+      border-radius: 20px;
+      font-size: 0.82em;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 0.8em;
+    }
+
+    /* LinkedIn-style post wrapper for Spot the Errors */
+    .li-spot-post {
+      background: #fff;
+      border: 1px solid #d0d5dd;
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 580px;
+      width: 100%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      text-align: left;
+      margin: 0 auto;
+    }
+
+    .li-spot-header {
+      display: flex;
+      align-items: flex-start;
+      padding: 12px 16px 8px;
+      gap: 10px;
+    }
+
+    .li-spot-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0A66C2, #004182);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1em;
+      flex-shrink: 0;
+    }
+
+    .li-spot-author { flex: 1; }
+    .li-spot-name { font-weight: 700; font-size: 0.88em; color: var(--text); }
+    .li-spot-headline { font-size: 0.74em; color: var(--muted); line-height: 1.3; }
+    .li-spot-meta { font-size: 0.7em; color: #999; margin-top: 2px; }
+
+    .li-spot-body {
+      padding: 2px 16px 14px;
+      font-size: 0.86em;
+      line-height: 2.2;
+      color: var(--text);
+    }
+
+    .li-spot-footer {
+      border-top: 1px solid #f0f0f0;
+      display: flex;
+      padding: 2px 8px;
+    }
+
+    .li-spot-action {
+      flex: 1;
+      padding: 6px 4px;
+      border: none;
+      background: none;
+      color: #666;
+      font-size: 0.75em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: default;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .cw {
+      cursor: pointer;
+      border-bottom: 2px dashed #bbb;
+      padding: 2px 5px;
+      border-radius: 4px;
+      transition: all 0.18s;
+      display: inline;
+    }
+
+    .cw:hover { background: #ebf2fc; border-bottom-color: var(--li-blue); }
+
+    .cw.found {
+      background: var(--success-bg);
+      color: var(--success);
+      border-bottom: 2px solid var(--success);
+      font-weight: 600;
+    }
+
+    .cw.wrong {
+      background: var(--error-bg);
+      color: var(--error);
+      border-bottom: 2px solid var(--error);
+      animation: shake 0.3s ease;
+    }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25%      { transform: translateX(-5px); }
+      75%      { transform: translateX(5px); }
+    }
+
+    .error-success-msg {
+      display: none;
+      background: var(--success-bg);
+      color: var(--success);
+      padding: 9px 22px;
+      border-radius: 10px;
+      font-weight: 600;
+      margin: 0.8em auto 0;
+      font-size: 0.86em;
+      max-width: 580px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* =======================================
+       STEP PROGRESS BAR (shared)
+       ======================================= */
+    .step-progress {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto 1em;
+    }
+
+    .sp-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .sp-dot {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.76em;
+      color: #ccc;
+      background: #fff;
+      transition: all 0.3s;
+    }
+
+    .sp-step.done .sp-dot {
+      background: var(--success);
+      border-color: var(--success);
+      color: #fff;
+    }
+
+    .sp-step.active .sp-dot {
+      background: var(--li-blue);
+      border-color: var(--li-blue);
+      color: #fff;
+      box-shadow: 0 0 0 4px rgba(10,102,194,0.18);
+    }
+
+    .sp-label {
+      font-size: 0.6em;
+      color: #aaa;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .sp-step.done .sp-label,
+    .sp-step.active .sp-label { color: var(--li-blue-dark); }
+
+    .sp-line {
+      flex: 1;
+      height: 2px;
+      background: #ddd;
+      margin: 14px 2px 0;
+      min-width: 20px;
+    }
+
+    .sp-line.done { background: var(--success); }
+
+    /* =======================================
+       SAMPLE TEXT REFERENCE STRIP (Step slides)
+       ======================================= */
+    .sample-ref {
+      background: var(--li-blue-light);
+      border: 1.5px solid #a8c7f0;
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 0.76em;
+      max-width: 560px;
+      width: 100%;
+      margin: 0 auto 0.8em;
+      line-height: 1.7;
+      text-align: left;
+    }
+
+    .sr-label {
+      color: var(--li-blue-dark);
+      font-weight: 700;
+      margin-bottom: 3px;
+      display: block;
+      font-size: 1em;
+    }
+
+    .sr-snippet { color: var(--muted); font-style: italic; }
+
+    .sr-err {
+      background: #ffcdd2;
+      color: #b71c1c;
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    /* =======================================
+       STEPS — SHARED HEADER
+       ======================================= */
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0 auto 0.8em;
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .step-badge {
+      background: var(--li-blue);
+      color: #fff;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.15em;
+      flex-shrink: 0;
+    }
+
+    .step-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.25em;
+      color: var(--li-blue-dark);
+      margin: 0;
+    }
+
+    /* =======================================
+       SLIDE 6 — STEP 1: READ + SAMPLE TEXT
+       ======================================= */
+
+    /* Horizontal sample-post banner */
+    .step1-banner {
+      background: var(--li-blue-light);
+      border: 1.5px solid #a8c7f0;
+      border-radius: 12px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      max-width: 580px;
+      width: 100%;
+      margin: 0 auto 1em;
+      text-align: left;
+    }
+
+    .step1-banner .sb-av {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--li-blue);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.88em;
+      flex-shrink: 0;
+    }
+
+    .step1-banner .sb-body { flex: 1; }
+
+    .step1-banner .sb-author {
+      font-size: 0.76em;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .step1-banner .sb-author strong { color: var(--text); }
+
+    .step1-banner .sb-text {
+      font-size: 0.81em;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    .step1-banner .sb-text .err {
+      color: var(--error);
+      font-weight: 700;
+      border-bottom: 2px dashed var(--error);
+    }
+
+    /* 2×2 checklist grid */
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 14px;
+      max-width: 580px;
+      width: 100%;
+      margin: 0 auto;
+      list-style: none;
+      padding: 0;
+      text-align: left;
+    }
+
+    .checklist-grid li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 9px;
+      cursor: pointer;
+      transition: background 0.18s;
+      font-size: 0.86em;
+      color: var(--text);
+      line-height: 1.5;
+      border: 2px solid transparent;
+      background: #fff;
+      border-color: #dde8f8;
+    }
+
+    .checklist-grid li:hover { background: var(--li-blue-light); border-color: var(--li-blue); }
+
+    .checklist-grid li.checked .check-circle {
+      background: var(--success);
+      border-color: var(--success);
+      color: #fff;
+    }
+
+    .checklist {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      text-align: left;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 15px;
+      border-radius: 9px;
+      cursor: pointer;
+      transition: background 0.18s;
+      font-size: 0.88em;
+      color: var(--text);
+      line-height: 1.55;
+      border: 2px solid transparent;
+      margin-bottom: 6px;
+    }
+
+    .checklist li:hover { background: var(--li-blue-light); }
+
+    .check-circle {
+      width: 22px;
+      height: 22px;
+      border: 2px solid #ccc;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65em;
+      color: transparent;
+      transition: all 0.2s;
+      margin-top: 1px;
+    }
+
+    .checklist li.checked .check-circle {
+      background: var(--success);
+      border-color: var(--success);
+      color: #fff;
+    }
+
+    /* =======================================
+       SLIDE 7 — STEP 2: IDENTIFY ERROR TYPES
+       ======================================= */
+    .flip-grid {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 0.4em;
+    }
+
+    .flip-card {
+      width: 155px;
+      height: 148px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.52s cubic-bezier(.4,0,.2,1);
+      transform-style: preserve-3d;
+    }
+
+    .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+
+    .flip-front, .flip-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+
+    .flip-front {
+      background: var(--li-blue);
+      color: #fff;
+      border: 2px solid var(--li-blue-dark);
+    }
+
+    .flip-front .fi { font-size: 1.7em; margin-bottom: 8px; }
+    .flip-front .ft { font-family: 'Poppins', sans-serif; font-size: 0.8em; font-weight: 600; text-align: center; }
+
+    .flip-back {
+      background: #f9fbff;
+      border: 2px solid #a5d6a7;
+      transform: rotateY(180deg);
+    }
+
+    .flip-back .fb-err  { color: var(--error); font-size: 0.78em; text-decoration: line-through; margin-bottom: 3px; }
+    .flip-back .fb-fix  { color: var(--success); font-size: 0.82em; font-weight: 700; }
+    .flip-back .fb-lbl  { font-size: 0.7em; color: #888; margin-top: 6px; text-align: center; }
+
+    /* =======================================
+       SLIDE 8 — STEP 3: COPY PROMPT
+       ======================================= */
+    .prompt-box {
+      background: #1e1e2e;
+      border-radius: 12px;
+      padding: 18px 22px;
+      max-width: 600px;
+      width: 100%;
+      text-align: left;
+      margin: 0 auto;
+    }
+
+    .prompt-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .prompt-label { color: #888; font-size: 0.76em; font-family: monospace; }
+
+    .copy-btn {
+      background: var(--li-blue);
+      color: #fff;
+      border: none;
+      padding: 5px 14px;
+      border-radius: 7px;
+      font-size: 0.78em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .copy-btn:hover { background: var(--li-blue-dark); }
+    .copy-btn.copied { background: var(--success); }
+
+    .prompt-text {
+      color: #cdd6f4;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82em;
+      line-height: 1.75;
+      margin: 0;
+      white-space: pre-wrap;
+    }
+
+    .prompt-text .hl  { color: #89dceb; }
+    .prompt-text .hl2 { color: #a6e3a1; }
+    .prompt-text .hl3 { color: #fab387; }
+
+    .tip-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--neutral);
+      border-radius: 12px;
+      padding: 12px 18px;
+      max-width: 560px;
+      width: 100%;
+      margin: 1em auto 0;
+      text-align: left;
+    }
+
+    .tip-box .tip-icon { font-size: 1.6em; color: var(--li-blue); flex-shrink: 0; }
+    .tip-box p { margin: 0; font-size: 0.8em; color: var(--muted); line-height: 1.5; }
+
+    .protip-wrap {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .protip-toggle {
+      background: none;
+      border: none;
+      color: var(--li-blue);
+      cursor: pointer;
+      font-size: 0.95em;
+      padding: 2px 5px;
+      vertical-align: middle;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .protip-toggle:hover { opacity: 1; }
+
+    .protip-bubble {
+      display: none;
+      position: absolute;
+      left: calc(100% + 12px);
+      top: 50%;
+      transform: translateY(-50%);
+      background: #fff;
+      border: 1.5px solid var(--li-blue);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 0.76em;
+      color: var(--muted);
+      width: 240px;
+      line-height: 1.55;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+      z-index: 200;
+      text-align: left;
+      white-space: normal;
+    }
+    /* left-pointing tail */
+    .protip-bubble::before {
+      content: '';
+      position: absolute;
+      left: -9px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 8px solid transparent;
+      border-left-width: 0;
+      border-right-color: var(--li-blue);
+    }
+    .protip-bubble::after {
+      content: '';
+      position: absolute;
+      left: -7px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 7px solid transparent;
+      border-left-width: 0;
+      border-right-color: #fff;
+    }
+
+    /* =======================================
+       SLIDE 9 — STEP 4: SIDE-BY-SIDE LINKEDIN
+       ======================================= */
+    .li-compare-wrap {
+      display: flex;
+      gap: 18px;
+      max-width: 700px;
+      width: 100%;
+      align-items: flex-start;
+      margin: 0 auto;
+    }
+
+    .li-compare-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .li-col-label {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.8em;
+      padding: 4px 14px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .li-col-label.orig-lbl  { background: var(--error-bg);   color: var(--error);   }
+    .li-col-label.fixed-lbl { background: var(--success-bg); color: var(--success); }
+
+    .li-compare-arrow {
+      font-size: 1.4em;
+      color: var(--li-blue);
+      margin-top: 60px;
+      flex-shrink: 0;
+    }
+
+    .li-post-card {
+      background: #fff;
+      border: 1px solid #d0d5dd;
+      border-radius: 8px;
+      overflow: hidden;
+      width: 100%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .li-post-card.orig-card { border-color: #ef9a9a; }
+    .li-post-card.fixed-card { border-color: #a5d6a7; }
+
+    .li-ph {
+      display: flex;
+      align-items: flex-start;
+      padding: 10px 12px 6px;
+      gap: 8px;
+    }
+
+    .li-av {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0A66C2, #004182);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95em;
+      flex-shrink: 0;
+    }
+
+    .li-ai { flex: 1; }
+    .li-an { font-weight: 700; font-size: 0.8em; color: var(--text); }
+    .li-ah { font-size: 0.7em; color: var(--muted); line-height: 1.3; }
+    .li-am { font-size: 0.68em; color: #999; margin-top: 1px; }
+
+    .li-pb {
+      padding: 0 12px 10px;
+      font-size: 0.76em;
+      line-height: 1.85;
+      color: var(--text);
+    }
+
+    .li-pf {
+      border-top: 1px solid #f0f0f0;
+      display: flex;
+      padding: 2px 6px;
+    }
+
+    .li-act {
+      flex: 1;
+      padding: 5px 2px;
+      border: none;
+      background: none;
+      cursor: default;
+      color: #777;
+      font-size: 0.68em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .li-post-card .err { color: var(--error);   font-weight: 700; }
+    .li-post-card .fix { color: var(--success); font-weight: 700; }
+
+    /* =======================================
+       SLIDE 10 — STEP 5: DIFF VIEW
+       ======================================= */
+    .diff-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      max-width: 700px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .diff-box {
+      border-radius: 12px;
+      padding: 18px 20px;
+      text-align: left;
+      font-size: 0.86em;
+      line-height: 2.1;
+    }
+
+    .diff-box.orig   { background: var(--error-bg);   border: 2px solid #ef9a9a; }
+    .diff-box.fixed  { background: var(--success-bg); border: 2px solid #a5d6a7; }
+
+    .diff-box h4 { font-family: 'Poppins', sans-serif; margin: 0 0 10px; font-size: 0.88em; }
+    .diff-box.orig  h4 { color: var(--error);   }
+    .diff-box.fixed h4 { color: var(--success); }
+
+    .del { text-decoration: line-through; color: var(--error); font-weight: 600; }
+    .ins { color: var(--success); font-weight: 600; }
+
+    /* =======================================
+       SLIDE 11 — STEP 6: RECHECK
+       ======================================= */
+    .recheck-list {
+      list-style: none;
+      margin: 0 auto;
+      padding: 0;
+      max-width: 520px;
+      width: 100%;
+      text-align: left;
+    }
+
+    .recheck-list li {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      background: #fff;
+      border: 2px solid #dde8f8;
+      border-radius: 10px;
+      padding: 12px 17px;
+      margin-bottom: 8px;
+      font-size: 0.87em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .recheck-list li:hover { border-color: var(--li-blue); background: var(--li-blue-light); }
+    .recheck-list li.done  { border-color: var(--success); background: var(--success-bg); }
+
+    .ri { font-size: 1.1em; color: #ccc; transition: color 0.2s; flex-shrink: 0; }
+    .recheck-list li.done .ri { color: var(--success); }
+
+    /* =======================================
+       COMBINED STEP 5 — CORRECT & RECHECK
+       ======================================= */
+    .diff-compact .diff-box {
+      padding: 10px 13px;
+      font-size: 0.76em;
+      line-height: 1.65;
+    }
+
+    .recheck-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 600px;
+      width: 100%;
+      margin: 0.6em auto;
+    }
+
+    .recheck-divider::before,
+    .recheck-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e0e0e0;
+    }
+
+    .recheck-divider span {
+      font-size: 0.73em;
+      color: var(--muted);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .recheck-grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 12px;
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .rg-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: #fff;
+      border: 2px solid #dde8f8;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 0.8em;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+    }
+
+    .rg-item:hover { border-color: var(--li-blue); background: var(--li-blue-light); }
+    .rg-item.done  { border-color: var(--success); background: var(--success-bg); }
+    .rg-item.done .ri { color: var(--success); }
+
+    /* =======================================
+       SLIDE 11 — KNOWLEDGE CHECK QUIZ
+       ======================================= */
+    .quiz-wrap {
+      max-width: 600px;
+      width: 100%;
+      text-align: left;
+      margin: 0 auto;
+    }
+
+    .qd {
+      display: none;
+    }
+
+    .qd.active { background: var(--li-blue); }
+    .qd.done   { background: var(--success); }
+
+    .q-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1em;
+      color: var(--li-blue-dark);
+      margin-bottom: 1em;
+    }
+
+    .q-options { display: flex; flex-direction: column; gap: 9px; }
+
+    .q-opt {
+      background: #fff;
+      border: 2px solid #dde8f8;
+      border-radius: 10px;
+      padding: 11px 16px;
+      cursor: pointer;
+      font-size: 0.86em;
+      transition: all 0.18s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .q-opt:hover { border-color: var(--li-blue); background: var(--li-blue-light); }
+
+    .q-opt .opt-letter {
+      background: var(--li-blue-light);
+      color: var(--li-blue);
+      font-weight: 700;
+      font-size: 0.82em;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .q-opt.correct   { border-color: var(--success); background: var(--success-bg); color: var(--success); font-weight: 600; }
+    .q-opt.incorrect { border-color: var(--error);   background: var(--error-bg);   color: var(--error); }
+    .q-opt.disabled  { pointer-events: none; }
+
+    .q-feedback {
+      margin-top: 10px;
+      padding: 9px 15px;
+      border-radius: 8px;
+      font-size: 0.83em;
+      display: none;
+    }
+
+    .q-feedback.show { display: block; }
+    .q-feedback.ok   { background: var(--success-bg); color: var(--success); }
+    .q-feedback.bad  { background: var(--error-bg);   color: var(--error); }
+
+    .q-next {
+      margin-top: 1em;
+      background: var(--li-blue);
+      color: #fff;
+      border: none;
+      padding: 9px 26px;
+      border-radius: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      display: none;
+      transition: background 0.2s;
+      font-size: 0.88em;
+    }
+
+    .q-next.show { display: inline-flex; align-items: center; gap: 6px; }
+    .q-next:hover { background: var(--li-blue-dark); }
+
+    /* =======================================
+       SLIDE 13 — COMPLETION
+       ======================================= */
+    .badge-card {
+      background: #fff;
+      border: 3px solid #ddd;
+      border-radius: 16px;
+      width: 140px;
+      padding: 18px 14px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      margin: 0 auto 0.8em;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.08);
+      transition: all 0.4s;
+    }
+    .badge-card .bi { font-size: 2.6em; color: #ccc; }
+    .badge-card .bl {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.6em;
+      color: #bbb;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .badge-card.earned {
+      border-color: var(--success);
+      box-shadow: 0 6px 24px rgba(5,118,66,0.2);
+    }
+    .badge-card.earned .bi { color: var(--success); }
+    .badge-card.earned .bl { color: var(--success); }
+
+    .score-big { font-family: 'Poppins', sans-serif; font-size: 2em; font-weight: 800; color: var(--li-blue); margin-bottom: 0.15em; }
+    .score-sub { font-size: 0.84em; color: var(--muted); margin-bottom: 1em; }
+
+    .cta-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 1.2em; }
+
+    /* Make completion slide scrollable so objectives card doesn't push content off screen */
+    .reveal .slides section.completion-slide {
+      overflow-y: auto !important;
+      max-height: 100vh;
+      padding-bottom: 100px;
+    }
+
+    /* ── About button (fixed top-right) ── */
+    .about-btn {
+      position: fixed;
+      top: 14px;
+      right: 18px;
+      z-index: 1000;
+      background: var(--li-blue);
+      border: none;
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.72em;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(10,102,194,0.3);
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .about-btn:hover { background: var(--li-blue-dark); box-shadow: 0 4px 14px rgba(10,102,194,0.4); }
+
+    /* ── About modal overlay ── */
+    .about-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 9000;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-overlay.open { display: flex; }
+    .about-modal {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px 30px 24px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+      text-align: left;
+      font-family: 'Inter', sans-serif;
+    }
+    .about-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 1.3em;
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .about-modal-close:hover { color: var(--heading); }
+    .about-modal-tag {
+      background: var(--li-blue);
+      color: #fff;
+      font-size: 0.65em;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 3px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .about-modal h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.15em;
+      color: var(--heading);
+      margin: 0 0 12px;
+    }
+    .about-modal p {
+      font-size: 0.8em;
+      color: var(--body);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+    .about-modal-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      margin-bottom: 14px;
+    }
+    .amc {
+      background: var(--li-blue-light);
+      border: 1px solid #c5d8f0;
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+    .amc-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.62em;
+      font-weight: 700;
+      color: var(--li-blue);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .amc-val { font-family: 'Inter', sans-serif; font-size: 0.74em; color: var(--body); line-height: 1.5; }
+    .about-modal-footer {
+      background: #f0f4f9;
+      border-left: 3px solid var(--li-blue);
+      border-radius: 0 8px 8px 0;
+      padding: 9px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.74em;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* Objectives recap on completion slide */
+    .obj-toggle {
+      background: none;
+      border: 1.5px solid var(--li-blue);
+      color: var(--li-blue);
+      border-radius: 20px;
+      padding: 5px 16px;
+      font-size: 0.78em;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 1em;
+      transition: background 0.2s, color 0.2s;
+    }
+    .obj-toggle:hover { background: var(--li-blue); color: #fff; }
+    .obj-card {
+      display: none;
+      background: var(--li-blue-light);
+      border: 1.5px solid #c5d8f0;
+      border-radius: 12px;
+      padding: 14px 18px;
+      max-width: 480px;
+      margin: 0 auto 1em;
+      text-align: left;
+    }
+    .obj-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+    .obj-card li { font-size: 0.78em; color: var(--body); display: flex; align-items: flex-start; gap: 10px; line-height: 1.45; }
+    .obj-card li .oi { color: var(--success); font-size: 1em; margin-top: 1px; flex-shrink: 0; }
+
+    .cta-btn {
+      padding: 10px 22px;
+      border-radius: 22px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.84em;
+      cursor: pointer;
+      border: 2px solid var(--li-blue);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      text-decoration: none;
+    }
+
+    .cta-btn.primary   { background: var(--li-blue); color: #fff; }
+    .cta-btn.secondary { background: #fff; color: var(--li-blue); }
+    .cta-btn.linkedin  { background: #0A66C2; color: #fff; border-color: #0A66C2; }
+
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 14px rgba(10,102,194,0.22); }
+
+    /* Prompt inspiration tips */
+    .prompt-tips {
+      max-width: 620px;
+      width: 100%;
+      border-top: 1px solid #e0e0e0;
+      padding-top: 0.9em;
+      margin: 0 auto;
+    }
+
+    .pt-heading {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82em;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 0.7em;
+      text-align: center;
+    }
+
+    .pt-cards {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .pt-card {
+      background: var(--li-blue-light);
+      border: 1.5px solid #a8c7f0;
+      border-radius: 10px;
+      padding: 10px 12px;
+      flex: 1;
+      min-width: 155px;
+      max-width: 185px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .pt-card:hover { border-color: var(--li-blue); box-shadow: 0 3px 10px rgba(10,102,194,0.14); transform: translateY(-2px); }
+
+    .pt-card i { font-size: 1.3em; color: var(--li-blue); margin-bottom: 5px; display: block; }
+    .pt-card p { font-size: 0.74em; color: var(--text); margin: 0; line-height: 1.5; font-style: italic; }
+
+    /* =======================================
+       SLIDE NAVIGATION BUTTONS (fixed)
+       ======================================= */
+    .slide-nav {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      gap: 12px;
+      z-index: 500;
+    }
+
+    .snav-btn {
+      background: #fff;
+      color: var(--li-blue);
+      border: 2px solid #cddaf0;
+      padding: 8px 22px;
+      border-radius: 22px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.8em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.09);
+    }
+
+    .snav-btn:hover { border-color: var(--li-blue); background: var(--li-blue-light); }
+    .snav-btn.fwd   { background: var(--li-blue); color: #fff; border-color: var(--li-blue); }
+    .snav-btn.fwd:hover { background: var(--li-blue-dark); }
+
+    /* Encourage message on completion slide */
+    .encourage-box {
+      background: var(--li-blue-light);
+      border: 2px solid #a8c7f0;
+      border-radius: 14px;
+      padding: 16px 22px;
+      max-width: 500px;
+      margin: 0 auto 1em;
+      display: none;
+    }
+
+    .encourage-box p {
+      color: var(--li-blue-dark);
+      font-size: 0.88em;
+      margin: 0 0 10px;
+      line-height: 1.6;
+    }
+
+    /* =======================================
+       RESPONSIVE
+       ======================================= */
+    @media (max-width: 720px) {
+      .why-flip-grid  { flex-direction: column; align-items: center; }
+      .diff-grid      { grid-template-columns: 1fr; }
+      .flip-grid      { gap: 10px; }
+      .flip-card      { width: 130px; height: 130px; }
+      .step1-layout   { flex-direction: column; }
+      .li-compare-wrap { flex-direction: column; }
+      .li-compare-arrow { margin-top: 0; transform: rotate(90deg); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Confetti canvas -->
+<canvas id="confetti-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
+
+<!-- About button -->
+<button class="about-btn" onclick="toggleAbout()">
+  <i class="fas fa-circle-info"></i> About
+</button>
+
+<!-- About modal -->
+<div class="about-overlay" id="aboutOverlay" onclick="closeAboutOnBackdrop(event)">
+  <div class="about-modal">
+    <button class="about-modal-close" onclick="toggleAbout()" title="Close">&times;</button>
+    <span class="about-modal-tag">Portfolio Piece</span>
+    <h3>About This Module</h3>
+    <p>
+      This micro-learning module was built on a curriculum I designed for the
+      <strong>DIGITAL STARs</strong> (Digital Skills Training for All Romanians) initiative, a World Bank program
+      supporting Romania's Ministry of Research, Innovation, and Digitalization (MoRID)
+      to deliver foundational digital skills training to <strong>100,000 Romanian citizens</strong> by June 2026.
+    </p>
+    <div class="about-modal-cards">
+      <div class="amc">
+        <div class="amc-label">Programme</div>
+        <div class="amc-val">DIGITAL STARs, implemented by the World Bank in partnership with MoRID, Romania</div>
+      </div>
+      <div class="amc">
+        <div class="amc-label">Track</div>
+        <div class="amc-val">Professional Track, aligned with the DigCompRo Romanian Digital Competence Framework</div>
+      </div>
+      <div class="amc">
+        <div class="amc-label">Learning Frameworks</div>
+        <div class="amc-val">How People Learn · Project Zero · Making Thinking Visible · Bloom's Taxonomy</div>
+      </div>
+      <div class="amc">
+        <div class="amc-label">Delivery Context</div>
+        <div class="amc-val">Self-paced microlearning via public libraries reimagined as digital hubs across Romania</div>
+      </div>
+    </div>
+    <div class="about-modal-footer">
+      <i class="fas fa-briefcase" style="color:var(--li-blue);margin-right:6px"></i>
+      This module is a portfolio piece demonstrating instructional design practice applied to a real-world World Bank digital inclusion project.
+    </div>
+  </div>
+</div>
+
+<!-- Back / Next navigation -->
+<div class="slide-nav" id="slideNav">
+  <button class="snav-btn" onclick="Reveal.prev()"><i class="fas fa-arrow-left"></i> Back</button>
+  <button class="snav-btn fwd" onclick="Reveal.next()">Next <i class="fas fa-arrow-right"></i></button>
+</div>
+
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ══════════════════════════════════════
+         SLIDE 1 — TITLE
+         ══════════════════════════════════════ -->
+    <section data-background-color="#0A66C2" class="slide-title">
+      <i class="fab fa-linkedin title-icon"></i>
+      <h1>LinkedIn Proofreading<br/>with ChatGPT</h1>
+      <p class="title-sub">A 10-minute micro-learning experience</p>
+      <div class="tag-row">
+        <span class="tag"><i class="fas fa-robot"></i>&nbsp; AI-Assisted</span>
+        <span class="tag"><i class="fas fa-spell-check"></i>&nbsp; Grammar</span>
+        <span class="tag"><i class="fas fa-user-tie"></i>&nbsp; Professional Skills</span>
+      </div>
+      <div class="title-objectives">
+        <p>By the end of this lesson, you will be able to:</p>
+        <ol>
+          <li><strong>Identify</strong> writing errors in a LinkedIn post to protect your professional credibility.</li>
+          <li><strong>Apply</strong> a five-step proofreading process with ChatGPT to review and refine professional posts.</li>
+          <li><strong>Produce</strong> a polished, error-free LinkedIn post using ChatGPT as a proofreading tool.</li>
+        </ol>
+      </div>
+      <button class="btn-start" onclick="Reveal.next()">
+        Start Learning &nbsp;<i class="fas fa-arrow-right"></i>
+      </button>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SLIDE 2 — PRIOR KNOWLEDGE CHECK
+         ══════════════════════════════════════ -->
+    <section>
+      <h2><i class="fas fa-hand-wave" style="color:var(--li-blue)"></i>&nbsp; Quick Check-In</h2>
+      <div class="pk-wrap">
+        <p class="pk-question">Before we begin, have you used LinkedIn before?</p>
+        <div class="pk-btn-row">
+          <button class="pk-btn yes" onclick="pkAnswer(true)">
+            <i class="fab fa-linkedin"></i> Yes, I use LinkedIn
+          </button>
+          <button class="pk-btn no" onclick="pkAnswer(false)">
+            <i class="fas fa-seedling"></i> I'm new to LinkedIn
+          </button>
+        </div>
+
+        <div class="pk-msg yes-msg" id="pkYesMsg">
+          <i class="fas fa-circle-check"></i>&nbsp; Perfect. Then you already know the stakes. A single grammar slip in a post can cost you credibility with recruiters, clients and peers who see it every day. This module shows you how to use AI to proofread smarter, faster and more professionally.
+        </div>
+        <div class="pk-msg no-msg" id="pkNoMsg">
+          <i class="fas fa-lightbulb"></i>&nbsp; No problem! Here's a quick intro before we dive in.
+        </div>
+
+        <div class="pk-info" id="pkInfo">
+          <h3><i class="fab fa-linkedin" style="color:var(--li-blue)"></i>&nbsp; What is LinkedIn?</h3>
+          <p>LinkedIn is the world's largest <strong>professional networking platform</strong>, used by 900 million+ professionals globally. Think of it as your digital CV, networking hub and industry knowledge feed all in one place.</p>
+          <ul>
+            <li>Share career updates, skills, and milestones with your network</li>
+            <li>Connect with recruiters, hiring managers, and industry peers</li>
+            <li>Discover job openings and showcase your professional brand</li>
+            <li>Learn from thought leaders and industry conversations</li>
+          </ul>
+          <p><strong>Why does writing quality matter?</strong> Every post you publish is visible to potential employers, clients and colleagues. A single grammar error can undermine an otherwise impressive update, which is exactly what this course addresses.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SLIDE 3 — WHY THIS MATTERS (FLIP CARDS)
+         ══════════════════════════════════════ -->
+    <section>
+      <h2><i class="fas fa-star" style="color:var(--li-blue)"></i>&nbsp; Why This Matters</h2>
+      <p class="subtitle-text">A polished LinkedIn post can open real doors. Click each card to find out why.</p>
+      <div class="why-flip-grid">
+
+        <div class="why-flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="why-flip-inner">
+            <div class="why-flip-front">
+              <div class="wff-icon"><i class="fas fa-briefcase"></i></div>
+              <div class="wff-title">First Impressions</div>
+              <div class="wff-hook">Recruiters read your posts before they read your CV.</div>
+            </div>
+            <div class="why-flip-back">
+              <div class="wfb-title"><i class="fas fa-briefcase" style="color:var(--li-blue)"></i> First Impressions</div>
+              <p>Your posts <em>are</em> your professional brand. Recruiters scroll LinkedIn daily, and a grammar slip signals carelessness no matter how strong your experience. Error-free writing shows you pay attention to detail.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="why-flip-inner">
+            <div class="why-flip-front">
+              <div class="wff-icon"><i class="fas fa-handshake"></i></div>
+              <div class="wff-title">Stronger Network</div>
+              <div class="wff-hook">Clear posts attract more engagement and meaningful connections.</div>
+            </div>
+            <div class="why-flip-back">
+              <div class="wfb-title"><i class="fas fa-handshake" style="color:var(--li-blue)"></i> Stronger Network</div>
+              <p>Easy-to-read posts get more likes, shares and comments, so your reach grows beyond your immediate network. Clear writing builds trust and makes people want to engage with you and even refer you to others.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="why-flip-inner">
+            <div class="why-flip-front">
+              <div class="wff-icon"><i class="fas fa-robot"></i></div>
+              <div class="wff-title">AI as a Tool</div>
+              <div class="wff-hook">ChatGPT is your free 24/7 proofreading assistant.</div>
+            </div>
+            <div class="why-flip-back">
+              <div class="wfb-title"><i class="fas fa-robot" style="color:var(--li-blue)"></i> AI as a Tool</div>
+              <p>Free AI tools like ChatGPT can catch grammar errors you might read right past. But AI isn't perfect. It supports your judgement but doesn't replace it, so always review each suggestion before you apply it.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <p class="hint"><i class="fas fa-hand-pointer"></i>&nbsp; Click a card to flip it and reveal more</p>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SLIDE 4 — AI DISCLAIMER
+         ══════════════════════════════════════ -->
+    <section>
+      <h2><i class="fas fa-triangle-exclamation" style="color:var(--li-blue)"></i>&nbsp; Before We Start</h2>
+      <div class="disclaimer-card" onclick="toggleDisclaimer()">
+        <div class="warn-icon"><i class="fas fa-robot"></i></div>
+        <h3>AI Has Limits</h3>
+        <p>While ChatGPT can spot grammar mistakes, <strong>it's not perfect</strong>. It might miss errors or suggest unnatural changes. Always double-check corrections and ask a human for a second opinion, especially for important texts.</p>
+        <div class="disclaimer-extra" id="disclaimerExtra">
+          <p style="margin-top:10px"><strong><i class="fas fa-user"></i> Human judgement is key.</strong><br/>
+          Use AI as a starting point, not the final word. Your own reading of the corrected text always matters most.</p>
+        </div>
+      </div>
+      <p class="hint"><i class="fas fa-hand-pointer"></i>&nbsp; Click the card to expand</p>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SLIDE 5 — SPOT THE ERRORS
+         ══════════════════════════════════════ -->
+    <section>
+      <h2><i class="fas fa-magnifying-glass" style="color:var(--li-blue)"></i>&nbsp; Spot the Errors</h2>
+
+      <div class="error-context-banner">
+        <strong><i class="fas fa-triangle-exclamation"></i> Why this matters:</strong> Grammar errors in LinkedIn posts look unprofessional and they can cost you credibility with recruiters and connections who encounter your content every day. Can you find what's wrong with this real-world post?
+      </div>
+
+      <div class="error-counter" id="errorCounter">
+        <i class="fas fa-crosshairs"></i>&nbsp; Found: <span id="foundCount">0</span> / 5
+      </div>
+
+      <div class="li-spot-post">
+        <div class="li-spot-header">
+          <div class="li-spot-avatar">AR</div>
+          <div class="li-spot-author">
+            <div class="li-spot-name">Alex Rivera</div>
+            <div class="li-spot-headline">Marketing &amp; Communications Professional · Upskilling in Data Analytics</div>
+            <div class="li-spot-meta"><i class="fas fa-globe-americas" style="font-size:0.85em"></i> 2h · Public</div>
+          </div>
+        </div>
+        <div class="li-spot-body">
+          Thrilled to share that I just completed my Google Digital Marketing Certificate! After
+          <span class="cw" data-ok="true" data-id="e1" onclick="clickWord(this)">three month</span>
+          of hard work, <span class="cw" data-ok="true" data-id="e2" onclick="clickWord(this)">I has finally</span>
+          achieved this milestone. This course helped me develop
+          <span class="cw" data-ok="true" data-id="e3" onclick="clickWord(this)">new skill</span>
+          in data analytics and content strategy. I now feel
+          <span class="cw" data-ok="true" data-id="e4" onclick="clickWord(this)">ready apply</span>
+          these insights in my day-to-day work. If you're thinking about upskilling, take
+          <span class="cw" data-ok="true" data-id="e5" onclick="clickWord(this)">first step</span>
+          today, so you won't regret it! #DigitalMarketing #Upskilling 🎓
+        </div>
+        <div class="li-spot-footer">
+          <div class="li-spot-action"><i class="fas fa-thumbs-up"></i> Like</div>
+          <div class="li-spot-action"><i class="fas fa-comment"></i> Comment</div>
+          <div class="li-spot-action"><i class="fas fa-share"></i> Repost</div>
+          <div class="li-spot-action"><i class="fas fa-paper-plane"></i> Send</div>
+        </div>
+      </div>
+
+      <div class="error-success-msg" id="spotSuccess">
+        <i class="fas fa-check-circle"></i>&nbsp; Excellent! You found all 5 errors. Now let's fix them with ChatGPT.
+      </div>
+      <p class="hint"><i class="fas fa-hand-pointer"></i>&nbsp; Click the underlined phrases you think are incorrect</p>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SLIDE 6 — STEP 1: READ CAREFULLY
+         ══════════════════════════════════════ -->
+    <section>
+      <!-- Progress bar -->
+      <div class="step-progress">
+        <div class="sp-step active"><div class="sp-dot">1</div><div class="sp-label">Read</div></div>
+        <div class="sp-line"></div>
+        <div class="sp-step"><div class="sp-dot">2</div><div class="sp-label">Identify</div></div>
+        <div class="sp-line"></div>
+        <div class="sp-step"><div class="sp-dot">3</div><div class="sp-label">Prompt</div></div>
+        <div class="sp-line"></div>
+        <div class="sp-step"><div class="sp-dot">4</div><div class="sp-label">Review</div></div>
+        <div class="sp-line"></div>
+        <div class="sp-step"><div class="sp-dot">5</div><div class="sp-label">Correct &amp; Recheck</div></div>
+      </div>
+
+      <div class="step-header">
+        <div class="step-badge">1</div>
+        <h2 class="step-title">Read the Text Carefully</h2>
+      </div>
+
+      <p class="subtitle-text" style="margin-bottom:0.6em">Before using any tool, read the text yourself first. This builds your own grammar instinct.</p>
+
+      <!-- Horizontal sample post banner -->
+      <div class="step1-banner">
+        <div class="sb-av">AR</div>
+        <div class="sb-body">
+          <div class="sb-author"><strong>Alex Rivera</strong> · Sample Post · Read carefully</div>
+          <div class="sb-text">
+            Thrilled to share that I just completed my Google Digital Marketing Certificate! After <span class="err">three month</span> of hard work, <span class="err">I has finally</span> achieved this milestone. This course helped me develop <span class="err">new skill</span> in data analytics. I now feel <span class="err">ready apply</span> these insights in my work. Take <span class="err">first step</span> today. You won't regret it! #Upskilling 🎓
+          </div>
+        </div>
+      </div>
+
+      <!-- 2×2 checklist grid -->
+      <ul class="checklist-grid">
+        <li onclick="toggleCheck(this)">
+          <div class="check-circle"><i class="fas fa-check"></i></div>
+          Read the entire post slowly, start to end
+        </li>
+        <li onclick="toggleCheck(this)">
+          <div class="check-circle"><i class="fas fa-check"></i></div>
+          Note any phrases that feel awkward
+        </li>
+        <li onclick="toggleCheck(this)">
+          <div class="check-circle"><i class="fas fa-check"></i></div>
+          Focus on each individual sentence
+        </li>
+        <li onclick="toggleCheck(this)">
+          <div class="check-circle"><i class="fas fa-check"></i></div>
+          Understand the meaning before correcting
+        </li>
+      </ul>
+      <p class="hint"><i class="fas fa-hand-pointer"></i>&nbsp; Click each item to mark it done</p>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SLIDE 7 — STEP 2: IDENTIFY ERROR TYPES
+         ══════════════════════════════════════ -->
+    <section>
+      <!-- Progress bar -->
+      <div class="step-progress">
+        <div class="sp-step done"><div class="sp-dot"><i class="fas fa-check" style="font-size:0.7em"></i></div><div class="sp-label">Read</div></div>
+        <div class="sp-line done"></div>
+        <div class="sp-step active"><div class="sp-dot">2</div><div class="sp-label">Identify</div></div>
+        <div class="sp-line"></div>
+        <div class="sp-step"><div class="sp-dot">3</div><div class="sp-label">Prompt</div></div>
+        <div class="sp-line"></div>
+        <div class="sp-step"><div class="sp-dot">4</div><div class="sp-label">Review</div></div>
+        <div class="sp-line"></div>
+        <div class="sp-step"><div class="sp-dot">5</div><div class="sp-label">Correct &amp; Recheck</div></div>
+      </div>
+
+      <div class="step-header">
+        <div class="step-badge">2</div>
+        <h2 class="step-title">Identify Error Types</h2>
+      </div>
+
+      <div class="sample-ref">
+        <span class="sr-label"><i class="fas fa-file-lines"></i> Post Reference: Alex Rivera</span>
+        <span class="sr-snippet">Thrilled to share that I just completed my Google Digital Marketing Certificate! After <mark class="sr-err">three month</mark> of hard work, <mark class="sr-err">I has finally</mark> achieved this milestone. This course helped me develop <mark class="sr-err">new skill</mark> in data analytics. I now feel <mark class="sr-err">ready apply</mark> these insights in my day-to-day work. If you're thinking about upskilling, take <mark class="sr-err">first step</mark> today, so you won't regret it! #DigitalMarketing #Upskilling 🎓</span>
+      </div>
+
+      <p class="subtitle-text" style="margin-bottom:0.4em">4 error types appear in the post.<br>Flip each card to see the example from Alex's post.</p>
+      <div class="flip-grid">
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="fi"><i class="fas fa-font"></i></div>
+              <div class="ft">Missing Article</div>
+            </div>
+            <div class="flip-back">
+              <div class="fb-err">"first step"</div>
+              <div class="fb-fix">"the first step"</div>
+              <div class="fb-lbl">Add article <em>the</em></div>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="fi"><i class="fas fa-pen-to-square"></i></div>
+              <div class="ft">Wrong Verb Form</div>
+            </div>
+            <div class="flip-back">
+              <div class="fb-err">"I has finally"</div>
+              <div class="fb-fix">"I have finally"</div>
+              <div class="fb-lbl">Fix verb agreement</div>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="fi"><i class="fas fa-list-ol"></i></div>
+              <div class="ft">Incorrect Plural</div>
+            </div>
+            <div class="flip-back">
+              <div class="fb-err">"three month"</div>
+              <div class="fb-fix">"three months"</div>
+              <div class="fb-lbl">Also: "new skill" → "new skills"</div>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="fi"><i class="fas fa-link"></i></div>
+              <div class="ft">Missing Preposition</div>
+            </div>
+            <div class="flip-back">
+              <div class="fb-err">"ready apply"</div>
+              <div class="fb-fix">"ready to apply"</div>
+              <div class="fb-lbl">Add preposition <em>to</em></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="hint"><i class="fas fa-hand-pointer"></i>&nbsp; Click a card to flip it</p>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SLIDE 8 — STEP 3: INPUT TO CHATGPT
+         ══════════════════════════════════════ -->
+    <section>
+      <!-- Progress bar -->
+      <div class="step-progress">
+        <div class="sp-step done"><div class="sp-dot"><i class="fas fa-check" style="font-size:0.7em"></i></div><div class="sp-label">Read</div></div>
+        <div class="sp-line done"></div>
+        <div class="sp-step done"><div class="sp-dot"><i class="fas fa-check" style="font-size:0.7em"></i></div><div class="sp-label">Identify</div></div>
+        <div class="sp-line done"></div>
+        <div class="sp-step active"><div class="sp-dot">3</div><div class="sp-label">Prompt</div></div>
+        <div class="sp-line"></div>
+        <div class="sp-step"><div class="sp-dot">4</div><div class="sp-label">Review</div></div>
+        <div class="sp-line"></div>
+        <div class="sp-step"><div class="sp-dot">5</div><div class="sp-label">Correct &amp; Recheck</div></div>
+      </div>
+
+      <div class="step-header">
+        <div class="step-badge">3</div>
+        <h2 class="step-title">Input the Text into ChatGPT</h2>
+      </div>
+
+      <div class="sample-ref">
+        <span class="sr-label"><i class="fas fa-file-lines"></i> Post Reference: Alex Rivera</span>
+        <span class="sr-snippet">Thrilled to share that I just completed my Google Digital Marketing Certificate! After <mark class="sr-err">three month</mark> of hard work, <mark class="sr-err">I has finally</mark> achieved this milestone. This course helped me develop <mark class="sr-err">new skill</mark> in data analytics. I now feel <mark class="sr-err">ready apply</mark> these insights in my day-to-day work. If you're thinking about upskilling, take <mark class="sr-err">first step</mark> today, so you won't regret it! #DigitalMarketing #Upskilling 🎓</span>
+      </div>
+
+      <p class="subtitle-text" style="margin-bottom:0.4em">
+        Copy this prompt, paste it into ChatGPT, then add Alex's post after it.
+        <span class="protip-wrap">
+          <button class="protip-toggle" onclick="toggleProtip()" title="Pro tip">
+            <i class="fas fa-lightbulb"></i>
+          </button>
+          <span class="protip-bubble" id="protipBox">
+            Asking ChatGPT to <em>name the error type</em> and <em>explain why</em> turns every correction into a mini grammar lesson, so you stop making the same mistake twice.
+          </span>
+        </span>
+      </p>
+
+      <div class="prompt-box">
+        <div class="prompt-header">
+          <span class="prompt-label">// ChatGPT prompt</span>
+          <button class="copy-btn" id="copyBtn" onclick="copyPrompt()">
+            <i class="fas fa-copy"></i> Copy
+          </button>
+        </div>
+        <pre class="prompt-text"><span class="hl">Please proofread the following LinkedIn post.</span>
+Fix any grammar errors and improve clarity.
+For each correction, please:
+<span class="hl2">1. Quote the original error
+2. Show the corrected version
+3. Name the error type</span> (e.g. missing article,
+   wrong verb tense, incorrect plural)
+<span class="hl3">4. Explain why it's incorrect</span>
+
+Keep my original tone and voice. Only fix
+errors, do not rewrite the entire post.
+
+[Paste your LinkedIn post here]</pre>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SLIDE 9 — STEP 4: REVIEW (SIDE-BY-SIDE)
+         ══════════════════════════════════════ -->
+    <section>
+      <!-- Progress bar -->
+      <div class="step-progress">
+        <div class="sp-step done"><div class="sp-dot"><i class="fas fa-check" style="font-size:0.7em"></i></div><div class="sp-label">Read</div></div>
+        <div class="sp-line done"></div>
+        <div class="sp-step done"><div class="sp-dot"><i class="fas fa-check" style="font-size:0.7em"></i></div><div class="sp-label">Identify</div></div>
+        <div class="sp-line done"></div>
+        <div class="sp-step done"><div class="sp-dot"><i class="fas fa-check" style="font-size:0.7em"></i></div><div class="sp-label">Prompt</div></div>
+        <div class="sp-line done"></div>
+        <div class="sp-step active"><div class="sp-dot">4</div><div class="sp-label">Review</div></div>
+        <div class="sp-line"></div>
+        <div class="sp-step"><div class="sp-dot">5</div><div class="sp-label">Correct &amp; Recheck</div></div>
+      </div>
+
+      <div class="step-header">
+        <div class="step-badge">4</div>
+        <h2 class="step-title">Review AI Suggestions</h2>
+      </div>
+      <p class="subtitle-text" style="margin-bottom:0.6em">Compare the original post with the AI-corrected version side by side.</p>
+
+      <div class="li-compare-wrap">
+        <!-- ORIGINAL -->
+        <div class="li-compare-col">
+          <div class="li-col-label orig-lbl"><i class="fas fa-circle-xmark"></i> Original (5 errors)</div>
+          <div class="li-post-card orig-card">
+            <div class="li-ph">
+              <div class="li-av">AR</div>
+              <div class="li-ai">
+                <div class="li-an">Alex Rivera</div>
+                <div class="li-ah">Marketing &amp; Communications Professional</div>
+                <div class="li-am"><i class="fas fa-globe-americas" style="font-size:0.85em"></i> 2h</div>
+              </div>
+            </div>
+            <div class="li-pb">
+              Thrilled to share that I just completed my Google Digital Marketing Certificate! After <span class="err">three month</span> of hard work, <span class="err">I has finally</span> achieved this milestone. This course helped me develop <span class="err">new skill</span> in data analytics. I now feel <span class="err">ready apply</span> these insights in my work. Take <span class="err">first step</span> today, so you won't regret it! #Upskilling 🎓
+            </div>
+            <div class="li-pf">
+              <div class="li-act"><i class="fas fa-thumbs-up"></i> Like</div>
+              <div class="li-act"><i class="fas fa-comment"></i> Comment</div>
+              <div class="li-act"><i class="fas fa-share"></i> Repost</div>
+              <div class="li-act"><i class="fas fa-paper-plane"></i> Send</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="li-compare-arrow"><i class="fas fa-arrow-right"></i></div>
+
+        <!-- CORRECTED -->
+        <div class="li-compare-col">
+          <div class="li-col-label fixed-lbl"><i class="fas fa-circle-check"></i> AI-Corrected</div>
+          <div class="li-post-card fixed-card">
+            <div class="li-ph">
+              <div class="li-av">AR</div>
+              <div class="li-ai">
+                <div class="li-an">Alex Rivera</div>
+                <div class="li-ah">Marketing &amp; Communications Professional</div>
+                <div class="li-am"><i class="fas fa-globe-americas" style="font-size:0.85em"></i> 2h</div>
+              </div>
+            </div>
+            <div class="li-pb">
+              Thrilled to share that I just completed my Google Digital Marketing Certificate! After <span class="fix">three months</span> of hard work, <span class="fix">I have finally</span> achieved this milestone. This course helped me develop <span class="fix">new skills</span> in data analytics. I now feel <span class="fix">ready to apply</span> these insights in my work. Take <span class="fix">the first step</span> today, so you won't regret it! #Upskilling 🎓
+            </div>
+            <div class="li-pf">
+              <div class="li-act"><i class="fas fa-thumbs-up"></i> Like</div>
+              <div class="li-act"><i class="fas fa-comment"></i> Comment</div>
+              <div class="li-act"><i class="fas fa-share"></i> Repost</div>
+              <div class="li-act"><i class="fas fa-paper-plane"></i> Send</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SLIDE 10 — STEP 5: CORRECT & RECHECK
+         ══════════════════════════════════════ -->
+    <section>
+      <!-- Progress bar — 5 steps -->
+      <div class="step-progress">
+        <div class="sp-step done"><div class="sp-dot"><i class="fas fa-check" style="font-size:0.7em"></i></div><div class="sp-label">Read</div></div>
+        <div class="sp-line done"></div>
+        <div class="sp-step done"><div class="sp-dot"><i class="fas fa-check" style="font-size:0.7em"></i></div><div class="sp-label">Identify</div></div>
+        <div class="sp-line done"></div>
+        <div class="sp-step done"><div class="sp-dot"><i class="fas fa-check" style="font-size:0.7em"></i></div><div class="sp-label">Prompt</div></div>
+        <div class="sp-line done"></div>
+        <div class="sp-step done"><div class="sp-dot"><i class="fas fa-check" style="font-size:0.7em"></i></div><div class="sp-label">Review</div></div>
+        <div class="sp-line done"></div>
+        <div class="sp-step active"><div class="sp-dot">5</div><div class="sp-label">Correct &amp; Recheck</div></div>
+      </div>
+
+      <div class="step-header">
+        <div class="step-badge">5</div>
+        <h2 class="step-title">Correct and Recheck</h2>
+      </div>
+
+      <p class="subtitle-text" style="margin-bottom:0.5em">Apply each fix, then run through the final checklist before you publish.</p>
+
+      <!-- Full diff — errors vs corrected -->
+      <div class="diff-grid diff-compact">
+        <div class="diff-box orig">
+          <h4><i class="fas fa-circle-xmark"></i>&nbsp; Original (errors)</h4>
+          Thrilled to share that I just completed my Google Digital Marketing Certificate! After <span class="del">three month</span> of hard work, <span class="del">I has finally</span> achieved this milestone. This course helped me develop <span class="del">new skill</span> in data analytics. I now feel <span class="del">ready apply</span> these insights in my day-to-day work. If you're thinking about upskilling, take <span class="del">first step</span> today — you won't regret it! #DigitalMarketing #Upskilling 🎓
+        </div>
+        <div class="diff-box fixed">
+          <h4><i class="fas fa-circle-check"></i>&nbsp; Corrected</h4>
+          Thrilled to share that I just completed my Google Digital Marketing Certificate! After <span class="ins">three months</span> of hard work, <span class="ins">I have finally</span> achieved this milestone. This course helped me develop <span class="ins">new skills</span> in data analytics. I now feel <span class="ins">ready to apply</span> these insights in my day-to-day work. If you're thinking about upskilling, take <span class="ins">the first step</span> today — you won't regret it! #DigitalMarketing #Upskilling 🎓
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="recheck-divider"><span>Final Check: tick each one before publishing</span></div>
+
+      <!-- 2-col recheck grid -->
+      <div class="recheck-grid-2col">
+        <div class="rg-item" onclick="this.classList.toggle('done')">
+          <i class="fas fa-circle-check ri"></i>
+          Read the corrected text aloud. Does it sound natural?
+        </div>
+        <div class="rg-item" onclick="this.classList.toggle('done')">
+          <i class="fas fa-circle-check ri"></i>
+          All 5 errors from Step 2 are fixed
+        </div>
+        <div class="rg-item" onclick="this.classList.toggle('done')">
+          <i class="fas fa-circle-check ri"></i>
+          No new errors were accidentally introduced
+        </div>
+        <div class="rg-item" onclick="this.classList.toggle('done')">
+          <i class="fas fa-circle-check ri"></i>
+          Ask a colleague for one final read-through
+        </div>
+      </div>
+      <p class="hint" style="margin-top:0.5em"><i class="fas fa-hand-pointer"></i>&nbsp; Click each item to confirm</p>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SLIDE 12 — KNOWLEDGE CHECK QUIZ
+         ══════════════════════════════════════ -->
+    <section>
+      <h2><i class="fas fa-clipboard-question" style="color:var(--li-blue)"></i>&nbsp; Knowledge Check</h2>
+      <div class="quiz-wrap">
+        <div id="quizArea"></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SLIDE 13 — COMPLETION
+         ══════════════════════════════════════ -->
+    <section class="completion-slide">
+
+      <!-- ── STATE 1: Steps not all visited / quiz not done ── -->
+      <div id="stateNotDone">
+        <div class="badge-card">
+          <i class="fas fa-lock bi"></i>
+          <div class="bl">BADGE LOCKED</div>
+        </div>
+        <h2 style="color:var(--muted);margin-bottom:0.2em">Not Quite Yet!</h2>
+        <p class="score-sub">Work through every step of the module to unlock your LinkedIn Readiness Badge.</p>
+        <div class="encourage-box" style="display:block">
+          <p id="notDoneMsg">Go back and complete all the steps: read the post, identify errors, use the ChatGPT prompt, review the suggestions, correct and recheck. Then finish the Knowledge Check. Your badge will be waiting here when you do.</p>
+          <button class="cta-btn primary" onclick="Reveal.slide(1)" style="margin:0.4em auto 0;display:inline-flex">
+            <i class="fas fa-arrow-left"></i>&nbsp; Go Back to the Module
+          </button>
+        </div>
+      </div>
+
+      <!-- ── STATE 2: All steps visited, quiz done, score < perfect ── -->
+      <div id="statePartial" style="display:none">
+        <div class="badge-card">
+          <i class="fas fa-star-half-stroke bi" style="color:#f9a825"></i>
+          <div class="bl" style="color:#b06000">ALMOST THERE</div>
+        </div>
+        <h2 style="color:var(--li-blue);margin-bottom:0.1em">So Close!</h2>
+        <p class="score-sub" id="partialMsg"></p>
+        <div class="encourage-box" style="display:block">
+          <p>Answer the Knowledge Check correctly to earn your <strong>LinkedIn Readiness Badge</strong> and unlock your first post prompts. Review the step you missed and try again.</p>
+          <button class="cta-btn primary" onclick="Reveal.slide(10)" style="margin:0.4em auto 0;display:inline-flex">
+            <i class="fas fa-rotate-left"></i>&nbsp; Retry Knowledge Check
+          </button>
+        </div>
+      </div>
+
+      <!-- ── STATE 3: All steps done + perfect score — badge earned ── -->
+      <div id="statePerfect" style="display:none">
+        <div class="badge-card earned">
+          <i class="fas fa-trophy bi"></i>
+          <div class="bl">LINKEDIN<br/>READY</div>
+        </div>
+        <h2 style="color:var(--success);margin-bottom:0.1em">You're LinkedIn Ready!</h2>
+        <p class="score-sub">You've completed the full module and earned your LinkedIn Readiness Badge.<br>If you'd like to keep practising and go further, <a href="resource-guide.html" target="_blank" style="color:var(--li-blue);font-weight:600;text-decoration:underline">use this resource guide</a>.</p>
+
+        <button class="obj-toggle" onclick="toggleObj()">
+          <i class="fas fa-list-check"></i> View Learning Objectives
+        </button>
+        <div class="obj-card" id="objCard">
+          <ul>
+            <li><i class="fas fa-circle-check oi"></i> Identify writing errors in a LinkedIn post to protect your professional credibility</li>
+            <li><i class="fas fa-circle-check oi"></i> Apply a five-step proofreading process with ChatGPT to review and refine professional posts</li>
+            <li><i class="fas fa-circle-check oi"></i> Produce a polished, error-free LinkedIn post using ChatGPT as a proofreading tool</li>
+          </ul>
+        </div>
+
+        <div class="cta-row">
+          <button class="cta-btn secondary" onclick="restartModule()">
+            <i class="fas fa-rotate-left"></i> Restart
+          </button>
+          <a class="cta-btn linkedin" href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" rel="noopener">
+            <i class="fab fa-linkedin"></i> Write Your First Post
+          </a>
+        </div>
+        <div class="prompt-tips">
+          <p class="pt-heading"><i class="fas fa-lightbulb" style="color:var(--li-blue)"></i>&nbsp; Not sure what to write? Pick a topic to get started:</p>
+          <div class="pt-cards">
+            <div class="pt-card">
+              <i class="fas fa-graduation-cap"></i>
+              <p>"I just completed [course name]. Here's what I learned and why it matters to me..."</p>
+            </div>
+            <div class="pt-card">
+              <i class="fas fa-briefcase"></i>
+              <p>"Excited to announce I'm starting a new role as [title]. Here's what led me here..."</p>
+            </div>
+            <div class="pt-card">
+              <i class="fas fa-lightbulb"></i>
+              <p>"One lesson my career has taught me about [topic] that I wish I'd known sooner..."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+
+  </div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<!-- canvas-confetti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+<!-- Reveal.js -->
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+
+<script>
+/* ===================================================
+   REVEAL.JS INIT
+   =================================================== */
+Reveal.initialize({
+  hash:            true,
+  progress:        true,
+  slideNumber:     false,
+  transition:      'fade',
+  transitionSpeed: 'default',
+  center:          false,
+  controls:        false,
+  keyboard:        true,
+  touch:           true,
+  overview:        true,
+});
+
+/* ===================================================
+   SLIDE 2 — PRIOR KNOWLEDGE CHECK
+   =================================================== */
+function pkAnswer(hasLinkedIn) {
+  document.getElementById('pkYesMsg').style.display = hasLinkedIn ? 'block' : 'none';
+  document.getElementById('pkNoMsg').style.display  = hasLinkedIn ? 'none'  : 'block';
+  document.getElementById('pkInfo').style.display   = hasLinkedIn ? 'none'  : 'block';
+}
+
+/* ===================================================
+   SLIDE 4 — DISCLAIMER EXPAND
+   =================================================== */
+function toggleDisclaimer() {
+  const el = document.getElementById('disclaimerExtra');
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+}
+
+/* ===================================================
+   SLIDE 5 — SPOT THE ERRORS
+   =================================================== */
+let foundErrors = 0;
+const foundIds  = new Set();
+
+function clickWord(el) {
+  const id = el.dataset.id;
+  if (foundIds.has(id)) return;
+
+  if (el.dataset.ok === 'true') {
+    foundIds.add(id);
+    el.classList.add('found');
+    foundErrors++;
+    document.getElementById('foundCount').textContent = foundErrors;
+    if (foundErrors === 5) {
+      document.getElementById('spotSuccess').style.display = 'block';
+    }
+  } else {
+    el.classList.add('wrong');
+    setTimeout(() => el.classList.remove('wrong'), 600);
+  }
+}
+
+/* ===================================================
+   SLIDE 6 — CHECKLIST
+   =================================================== */
+function toggleCheck(li) {
+  li.classList.toggle('checked');
+}
+
+/* ===================================================
+   SLIDE 8 — PRO TIP TOGGLE
+   =================================================== */
+function toggleAbout() {
+  document.getElementById('aboutOverlay').classList.toggle('open');
+}
+function closeAboutOnBackdrop(e) {
+  if (e.target === document.getElementById('aboutOverlay')) toggleAbout();
+}
+
+function toggleProtip() {
+  const box = document.getElementById('protipBox');
+  box.style.display = box.style.display === 'inline-block' ? 'none' : 'inline-block';
+}
+
+function toggleObj() {
+  const card = document.getElementById('objCard');
+  card.style.display = card.style.display === 'block' ? 'none' : 'block';
+}
+
+/* ===================================================
+   SLIDE 8 — COPY PROMPT
+   =================================================== */
+const PROMPT_TEXT = `Please proofread the following LinkedIn post.
+Fix any grammar errors and improve clarity.
+For each correction, please:
+1. Quote the original error
+2. Show the corrected version
+3. Name the error type (e.g. missing article, wrong verb tense, incorrect plural)
+4. Explain why it's incorrect
+
+Keep my original tone and voice. Only fix errors, do not rewrite the entire post.
+
+[Paste your LinkedIn post here]`;
+
+function copyPrompt() {
+  navigator.clipboard.writeText(PROMPT_TEXT).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+      btn.classList.remove('copied');
+    }, 2200);
+  }).catch(() => {
+    alert('Copy failed. Please select and copy manually.');
+  });
+}
+
+/* ===================================================
+   SLIDE 11 — RECHECK LIST
+   =================================================== */
+function toggleRecheck(li) {
+  li.classList.toggle('done');
+}
+
+/* ===================================================
+   SLIDE 12 — QUIZ
+   =================================================== */
+const QUESTIONS = [
+  {
+    q: 'Priya is drafting a LinkedIn post to announce her new role as Senior Marketing Manager. She runs it through ChatGPT, which flags "its a exciting opportunity" → "it\'s an exciting opportunity" and "I look forward working" → "I look forward to working". It also suggests replacing "I am beyond grateful" with "I am grateful." What should Priya do before publishing?',
+    opts: [
+      { t: 'Accept every suggestion without question, because ChatGPT has better grammar than she does.',                                                            ok: false },
+      { t: 'Apply both grammar fixes, keep "beyond grateful" (it reflects her genuine tone), then re-read the full post once more before publishing.',              ok: true  },
+      { t: 'Ignore all suggestions because AI misunderstands professional writing.',                                                                                 ok: false },
+      { t: 'Only fix "I look forward working" since one correction per session is enough.',                                                                         ok: false },
+    ],
+    fb: {
+      ok:  '✓ Correct! Priya applies the genuine grammar fixes, critically reviews the tone suggestion (keeping her authentic voice), and re-reads before publishing. That\'s the full 5-step process working exactly as intended.',
+      bad: '✗ Not quite. The right approach is to apply real grammar corrections, critically evaluate stylistic suggestions before accepting them, and always re-read the final post before you publish.',
+    },
+  },
+];
+
+let currentQ        = 0;
+let quizScore       = 0;
+let quizCompleted   = false;  // true only after quiz question is answered
+let confettiFired   = false;  // fire only once per completion
+let confettiTimeout = null;   // stored so we can cancel if user navigates away
+const visitedSlides = new Set();
+const REQUIRED_SLIDES = 10; // slides 0–9 must all be visited (slide 10 = quiz, 11 = completion)
+
+function renderQ(index) {
+  const q       = QUESTIONS[index];
+  const area    = document.getElementById('quizArea');
+  const letters = ['A', 'B', 'C', 'D'];
+
+  area.innerHTML = `
+    <p class="q-text">${index + 1}. ${q.q}</p>
+    <div class="q-options">
+      ${q.opts.map((o, i) => `
+        <div class="q-opt" data-i="${i}" onclick="pickOpt(this, ${o.ok}, ${index})">
+          <span class="opt-letter">${letters[i]}</span>${o.t}
+        </div>
+      `).join('')}
+    </div>
+    <div class="q-feedback" id="qfb"></div>
+  `;
+}
+
+function pickOpt(el, isCorrect, qIdx) {
+  el.closest('.q-options').querySelectorAll('.q-opt').forEach(o => o.classList.add('disabled'));
+  const fb = document.getElementById('qfb');
+
+  if (isCorrect) {
+    el.classList.add('correct');
+    quizScore++;
+    fb.textContent = QUESTIONS[qIdx].fb.ok;
+    fb.className   = 'q-feedback show ok';
+  } else {
+    el.classList.add('incorrect');
+    el.closest('.q-options').querySelectorAll('.q-opt').forEach((o) => {
+      if (QUESTIONS[qIdx].opts[parseInt(o.dataset.i)].ok) o.classList.add('correct');
+    });
+    fb.textContent = QUESTIONS[qIdx].fb.bad;
+    fb.className   = 'q-feedback show bad';
+  }
+  // Reveal the global Next button to proceed to the completion slide
+  const fwd = document.querySelector('#slideNav .fwd');
+  fwd.onclick = function() { updateCompletion(); Reveal.next(); };
+  fwd.style.display = 'flex';
+}
+
+
+function showCompletionState() {
+  const notDone = document.getElementById('stateNotDone');
+  const partial = document.getElementById('statePartial');
+  const perfect = document.getElementById('statePerfect');
+  if (!notDone) return;
+
+  // Check whether all content slides have been visited
+  const allStepsVisited = Array.from({length: REQUIRED_SLIDES}, (_, i) => i)
+                               .every(i => visitedSlides.has(i));
+
+  if (!allStepsVisited || !quizCompleted) {
+    // Not all steps done or quiz not answered
+    notDone.style.display = 'block';
+    partial.style.display = 'none';
+    perfect.style.display = 'none';
+    // Give a more specific hint
+    if (allStepsVisited && !quizCompleted) {
+      document.getElementById('notDoneMsg').textContent =
+        'Great work getting through all the steps! Now head back to the Knowledge Check and answer the scenario question to earn your badge.';
+    }
+    return;
+  }
+
+  notDone.style.display = 'none';
+
+  if (quizScore === QUESTIONS.length) {
+    // All steps visited + perfect score = badge earned
+    partial.style.display = 'none';
+    perfect.style.display = 'block';
+    if (!confettiFired) {
+      confettiFired   = true;
+      confettiTimeout = setTimeout(fireConfetti, 500);
+    }
+  } else {
+    // All steps visited but wrong answer
+    partial.style.display = 'block';
+    perfect.style.display = 'none';
+    document.getElementById('partialMsg').textContent   =
+      'You visited all the steps but missed the scenario question. Give it another go!';
+  }
+}
+
+function updateCompletion() {
+  quizCompleted = true;
+  showCompletionState();
+}
+
+/* ===================================================
+   SLIDE CHANGE EVENTS
+   =================================================== */
+Reveal.on('slidechanged', function(e) {
+  // Show / hide back-next nav buttons
+  const nav     = document.getElementById('slideNav');
+  const fwdBtn  = nav.querySelector('.fwd');
+  const totalSlides = Reveal.getTotalSlides();
+  const isFirst = e.indexh === 0;
+  const isLast  = e.indexh === totalSlides - 1;
+
+  // Cancel pending confetti and clear canvas when leaving the completion slide
+  if (e.indexh !== 11) {
+    clearTimeout(confettiTimeout);
+    confetti.reset();
+  }
+
+  // Track visited slides (only count content slides 0–10)
+  if (e.indexh <= 10) visitedSlides.add(e.indexh);
+
+  const isQuiz = e.indexh === 10;
+
+  nav.style.display    = isFirst ? 'none' : 'flex';
+  // Hide Next on last slide AND on the quiz slide (force quiz progression)
+  fwdBtn.style.display = (isLast || isQuiz) ? 'none' : 'flex';
+
+  // Quiz slide — index 10
+  if (isQuiz) {
+    currentQ  = 0;
+    quizScore = 0;
+    fwdBtn.onclick = function() { Reveal.next(); }; // reset to default before answer
+    renderQ(0);
+  }
+
+  // Completion slide — index 11: always render correct state
+  if (e.indexh === 11) {
+    showCompletionState();
+  }
+});
+
+// Also hide nav on initial load (title slide)
+Reveal.on('ready', function() {
+  document.getElementById('slideNav').style.display = 'none';
+  visitedSlides.add(0); // title slide is visited on load; slidechanged never fires for the first slide
+});
+
+/* ===================================================
+   CONFETTI
+   =================================================== */
+function fireConfetti() {
+  confetti({
+    particleCount: 130,
+    spread:        80,
+    origin:        { y: 0.55 },
+    colors: ['#0A66C2', '#004182', '#ffffff', '#057642', '#ffd700', '#89dceb'],
+  });
+}
+
+/* ===================================================
+   RESTART
+   =================================================== */
+function restartModule() {
+  // Reset confetti state
+  confettiFired = false;
+  clearTimeout(confettiTimeout);
+  confetti.reset();
+
+  // Reset error-spotting state
+  foundErrors = 0;
+  foundIds.clear();
+  document.getElementById('foundCount').textContent = '0';
+  document.getElementById('spotSuccess').style.display = 'none';
+  document.querySelectorAll('.cw').forEach(el => {
+    el.classList.remove('found', 'wrong');
+  });
+
+  // Reset recheck list
+  document.querySelectorAll('.recheck-list li').forEach(li => li.classList.remove('done'));
+
+  // Reset checklists
+  document.querySelectorAll('.checklist li, .checklist-grid li').forEach(li => li.classList.remove('checked'));
+
+  // Reset disclaimer
+  const de = document.getElementById('disclaimerExtra');
+  if (de) de.style.display = 'none';
+
+  // Reset prior knowledge check
+  document.getElementById('pkYesMsg').style.display  = 'none';
+  document.getElementById('pkNoMsg').style.display   = 'none';
+  document.getElementById('pkInfo').style.display    = 'none';
+
+  // Reset quiz and progress tracking
+  currentQ      = 0;
+  quizScore     = 0;
+  quizCompleted = false;
+  visitedSlides.clear();
+
+  Reveal.slide(0);
+}
+</script>
+</body>
+</html>
