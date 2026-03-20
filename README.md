@@ -1,8 +1,8 @@
 # LinkedIn Proofreading with ChatGPT
 
-An interactive micro-learning module built with [Reveal.js](https://revealjs.com/), designed as part of the **DIGITAL STARs** (Digital Skills Training for All Romanians) programme — a World Bank initiative supporting Romania's Ministry of Research, Innovation, and Digitalization (MoRID) to deliver foundational digital skills training to 100,000 Romanian citizens by June 2026.
+An interactive micro-learning module built with [Reveal.js](https://revealjs.com/), developed as a portfolio piece based on a curriculum I designed for the **DIGITAL STARs** (Digital Skills Training for All Romanians) programme — a World Bank initiative supporting Romania's Ministry of Research, Innovation, and Digitalization (MoRID) to deliver foundational digital skills training to 100,000 Romanian citizens by June 2026.
 
-This module sits within the **Professional Track** and teaches a practical 5-step process for using ChatGPT to proofread and publish professional LinkedIn posts.
+The module sits within the **Professional Track** and teaches a practical 5-step process for using ChatGPT to proofread and publish professional LinkedIn posts.
 
 ---
 
@@ -73,4 +73,4 @@ No build tools or dependencies required. Everything runs from a single `index.ht
 
 ## Portfolio Context
 
-This module was built on a curriculum designed for the DIGITAL STARs programme. It is part of a professional instructional design portfolio demonstrating end-to-end eLearning development: curriculum writing, learning design, and front-end development.
+This module is a portfolio piece built on a curriculum I developed for the DIGITAL STARs programme. It demonstrates end-to-end instructional design practice: curriculum writing, learning design, and interactive eLearning development.
